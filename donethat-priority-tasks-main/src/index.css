@@ -202,6 +202,18 @@
     filter: drop-shadow(0 0 12px hsl(38 92% 50% / 0.8));
   }
 
+  .glow-task-high {
+    box-shadow: 0 0 20px hsl(var(--priority-high) / 0.4), 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .glow-task-medium {
+    box-shadow: 0 0 20px hsl(var(--priority-medium) / 0.4), 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .glow-task-low {
+    box-shadow: 0 0 20px hsl(var(--priority-low) / 0.4), 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
   /* Text gradient */
   .text-gradient-primary {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-[hsl(45,100%,60%)];

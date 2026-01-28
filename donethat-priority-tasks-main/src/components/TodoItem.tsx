@@ -17,8 +17,14 @@ const TodoItem = ({ todo, maxPriority, onDelete }: TodoItemProps) => {
     low: "priority-badge-low",
   }[priorityLevel];
 
+  const glowClass = {
+    high: "hover:glow-task-high",
+    medium: "hover:glow-task-medium",
+    low: "hover:glow-task-low",
+  }[priorityLevel];
+
   return (
-    <div className="group flex items-center gap-4 p-4 rounded-xl bg-secondary/50 hover:bg-secondary/70 transition-all duration-200 animate-pop">
+    <div className={`group flex items-center gap-4 p-4 rounded-xl bg-secondary/50 hover:bg-secondary/70 hover:scale-105 ${glowClass} transition-all duration-200 animate-pop`}>
       {/* Priority badge */}
       <div className={priorityBadgeClass}>
         {todo.priority}
