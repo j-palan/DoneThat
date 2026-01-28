@@ -23,13 +23,13 @@ const Index = () => {
         {/* Header */}
         <header className="text-center space-y-2 animate-fade-in-up">
           <div className="flex items-center justify-center gap-3">
-            <CheckCircle2 className="w-10 h-10 text-primary glow-primary" />
-            <h1 className="text-4xl sm:text-5xl font-bold text-gradient-primary">
+            <CheckCircle2 className="w-10 h-10 text-primary glow-primary-intense" />
+            <h1 className="text-4xl sm:text-5xl font-bold text-gradient-primary glow-primary">
               DoneThat
             </h1>
           </div>
-          <p className="text-muted-foreground text-lg italic">
-            "Been there. DoneThat."
+          <p className="text-muted-foreground text-lg italic glow-primary">
+            Been there. DoneThat.
           </p>
         </header>
 

@@ -195,11 +195,11 @@
 @layer utilities {
   /* Glow effect */
   .glow-primary {
-    box-shadow: 0 0 20px hsl(38 92% 50% / 0.3);
+    filter: drop-shadow(0 0 8px hsl(38 92% 50% / 0.6));
   }
 
   .glow-primary-intense {
-    box-shadow: 0 0 30px hsl(38 92% 50% / 0.5);
+    filter: drop-shadow(0 0 12px hsl(38 92% 50% / 0.8));
   }
 
   /* Text gradient */
