@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DoneThat Design System - Neumorphic Dark Premium */
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 38 92% 50%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 222 47% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 47% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 47% 22%;
+    --input: 222 47% 18%;
+    --ring: 38 92% 50%;
+
+    --radius: 1rem;
+
+    /* Custom neumorphic shadows */
+    --shadow-neumorphic-up: 
+      8px 8px 16px hsl(222 47% 8% / 0.6),
+      -8px -8px 16px hsl(222 47% 18% / 0.4);
+    --shadow-neumorphic-down: 
+      inset 4px 4px 8px hsl(222 47% 8% / 0.5),
+      inset -4px -4px 8px hsl(222 47% 18% / 0.3);
+    --shadow-neumorphic-button: 
+      6px 6px 12px hsl(222 47% 6% / 0.7),
+      -6px -6px 12px hsl(222 47% 20% / 0.5);
+    --shadow-neumorphic-pressed: 
+      inset 3px 3px 6px hsl(222 47% 6% / 0.6),
+      inset -3px -3px 6px hsl(222 47% 20% / 0.4);
+
+    /* Glass effect */
+    --glass-bg: hsl(222 47% 16% / 0.7);
+    --glass-border: hsl(222 47% 30% / 0.3);
+
+    /* Priority colors */
+    --priority-high: 0 84% 60%;
+    --priority-medium: 38 92% 50%;
+    --priority-low: 142 76% 36%;
+
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 38 92% 50%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 222 47% 20%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 47% 22%;
+    --sidebar-ring: 38 92% 50%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 38 92% 50%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 222 47% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 47% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 222 47% 22%;
+    --input: 222 47% 18%;
+    --ring: 38 92% 50%;
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 38 92% 50%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 222 47% 20%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 47% 22%;
+    --sidebar-ring: 38 92% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Neumorphic card */
+  .neumorphic-card {
+    @apply rounded-2xl p-6;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-neumorphic-up);
+  }
+
+  /* 3D Button base */
+  .btn-3d {
+    @apply relative font-semibold transition-all duration-150 ease-out rounded-xl px-6 py-3;
+    box-shadow: var(--shadow-neumorphic-button);
+    transform: translateY(-2px);
+  }
+
+  .btn-3d:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      8px 8px 16px hsl(222 47% 6% / 0.8),
+      -8px -8px 16px hsl(222 47% 22% / 0.6);
+  }
+
+  .btn-3d:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-neumorphic-pressed);
+  }
+
+  /* Primary 3D button */
+  .btn-3d-primary {
+    @apply btn-3d bg-primary text-primary-foreground;
+  }
+
+  .btn-3d-primary:hover {
+    @apply bg-primary/90;
+  }
+
+  /* Secondary 3D button */
+  .btn-3d-secondary {
+    @apply btn-3d bg-secondary text-secondary-foreground;
+  }
+
+  /* Danger 3D button */
+  .btn-3d-danger {
+    @apply btn-3d bg-destructive/20 text-destructive;
+  }
+
+  .btn-3d-danger:hover {
+    @apply bg-destructive/30;
+  }
+
+  /* Input neumorphic */
+  .input-neumorphic {
+    @apply rounded-xl bg-input border-0 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200;
+    box-shadow: var(--shadow-neumorphic-down);
+  }
+
+  /* Priority badge */
+  .priority-badge {
+    @apply inline-flex items-center justify-center min-w-[2.5rem] h-8 rounded-lg font-bold text-sm;
+  }
+
+  .priority-badge-high {
+    @apply priority-badge bg-[hsl(var(--priority-high)/0.2)] text-[hsl(var(--priority-high))];
+  }
+
+  .priority-badge-medium {
+    @apply priority-badge bg-[hsl(var(--priority-medium)/0.2)] text-[hsl(var(--priority-medium))];
+  }
+
+  .priority-badge-low {
+    @apply priority-badge bg-[hsl(var(--priority-low)/0.2)] text-[hsl(var(--priority-low))];
+  }
+
+  /* Priority pill */
+  .priority-pill {
+    @apply inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-medium bg-secondary text-muted-foreground transition-all duration-200 hover:bg-secondary/80 hover:text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Glow effect */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(38 92% 50% / 0.3);
+  }
+
+  .glow-primary-intense {
+    box-shadow: 0 0 30px hsl(38 92% 50% / 0.5);
+  }
+
+  /* Text gradient */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-[hsl(45,100%,60%)];
+  }
+
+  /* Fade in animation */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Slide in animation */
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Pop animation for new items */
+  .animate-pop {
+    animation: pop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Shake animation for errors */
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+  }
+}
