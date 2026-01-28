@@ -43,9 +43,9 @@ const AddTodo = ({ onAdd }: AddTodoProps) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col sm:flex-row gap-4 items-start">
         {/* Task name input */}
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <input
             type="text"
             value={title}
@@ -66,7 +66,7 @@ const AddTodo = ({ onAdd }: AddTodoProps) => {
         </div>
         
         {/* Priority input */}
-        <div className="w-full sm:w-32">
+        <div className="w-full sm:w-32 min-h-[3.5rem]">
           <input
             type="number"
             value={priority}
@@ -90,7 +90,7 @@ const AddTodo = ({ onAdd }: AddTodoProps) => {
         {/* Add button */}
         <button
           type="submit"
-          className="btn-3d-primary flex items-center justify-center gap-2 whitespace-nowrap"
+          className="btn-3d-primary flex items-center justify-center gap-2 whitespace-nowrap self-start"
         >
           <Plus className="w-5 h-5" />
           <span>Add Task</span>
