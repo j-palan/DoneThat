@@ -163,6 +163,15 @@
     @apply bg-destructive/30;
   }
 
+  /* Success 3D button */
+  .btn-3d-success {
+    @apply btn-3d bg-green-500/20 text-green-500;
+  }
+
+  .btn-3d-success:hover {
+    @apply bg-green-500/30;
+  }
+
   /* Input neumorphic */
   .input-neumorphic {
     @apply rounded-xl bg-input border-0 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200;

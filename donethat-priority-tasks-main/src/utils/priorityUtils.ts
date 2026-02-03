@@ -3,6 +3,7 @@ export interface TodoItem {
   title: string;
   priority: number;
   createdAt: Date;
+  completed: boolean;
 }
 
 /**
@@ -25,6 +26,7 @@ export const addTodo = (
     title: title.trim(),
     priority,
     createdAt: new Date(),
+    completed: false,
   };
   return [...todos, newTodo];
 };
@@ -37,10 +39,43 @@ export const deleteTodo = (todos: TodoItem[], id: string): TodoItem[] => {
 };
 
 /**
+ * Edit a TODO item by ID - update title and/or priority
+ */
+export const editTodo = (
+  todos: TodoItem[],
+  id: string,
+  title: string,
+  priority: number
+): TodoItem[] => {
+  return todos.map((todo) =>
+    todo.id === id
+      ? { ...todo, title: title.trim(), priority }
+      : todo
+  );
+};
+
+/**
+ * Complete a TODO item by ID - marks task as completed
+ * Completed tasks release their priority (similar to delete for priority tracking)
+ */
+export const completeTodo = (todos: TodoItem[], id: string): TodoItem[] => {
+  return todos.map((todo) =>
+    todo.id === id
+      ? { ...todo, completed: true }
+      : todo
+  );
+};
+
+/**
  * Sort TODOs by priority (ascending - lower number = higher priority)
+ * Completed tasks are sorted to the bottom
  */
 export const sortTodosByPriority = (todos: TodoItem[]): TodoItem[] => {
   return [...todos].sort((a, b) => {
+    // Completed tasks go to the bottom
+    if (a.completed !== b.completed) {
+      return a.completed ? 1 : -1;
+    }
     if (a.priority !== b.priority) {
       return a.priority - b.priority;
     }
@@ -50,14 +85,15 @@ export const sortTodosByPriority = (todos: TodoItem[]): TodoItem[] => {
 };
 
 /**
- * Extract all unique priorities from todos
+ * Extract all unique priorities from active (non-completed) todos
  */
 export const extractPriorities = (todos: TodoItem[]): number[] => {
-  return [...new Set(todos.map((todo) => todo.priority))].sort((a, b) => a - b);
+  const activeTodos = todos.filter((todo) => !todo.completed);
+  return [...new Set(activeTodos.map((todo) => todo.priority))].sort((a, b) => a - b);
 };
 
 /**
- * Find the maximum priority in the list
+ * Find the maximum priority in the list (considers all todos for styling purposes)
  */
 export const findMaxPriority = (todos: TodoItem[]): number => {
   if (todos.length === 0) return 0;
@@ -65,14 +101,25 @@ export const findMaxPriority = (todos: TodoItem[]): number => {
 };
 
 /**
- * Compute missing priorities from 1 to max(priority)
+ * Find the maximum priority among active (non-completed) todos
+ */
+export const findMaxActivePriority = (todos: TodoItem[]): number => {
+  const activeTodos = todos.filter((todo) => !todo.completed);
+  if (activeTodos.length === 0) return 0;
+  return Math.max(...activeTodos.map((todo) => todo.priority));
+};
+
+/**
+ * Compute missing priorities from 1 to max(priority) among active todos
+ * Completed tasks release their priority, making it available again
  * Example: priorities [1, 3, 5, 5, 7, 12] → missing [2, 4, 6, 8, 9, 10, 11]
  */
 export const computeMissingPriorities = (todos: TodoItem[]): number[] => {
-  if (todos.length === 0) return [];
+  const activeTodos = todos.filter((todo) => !todo.completed);
+  if (activeTodos.length === 0) return [];
 
-  const maxPriority = findMaxPriority(todos);
-  const existingPriorities = new Set(todos.map((todo) => todo.priority));
+  const maxPriority = findMaxActivePriority(todos);
+  const existingPriorities = new Set(activeTodos.map((todo) => todo.priority));
   const missing: number[] = [];
 
   for (let i = 1; i <= maxPriority; i++) {

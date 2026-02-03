@@ -3,4 +3,5 @@ export interface TodoItem {
   title: string;
   priority: number;
   createdAt: Date;
+  completed: boolean;
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TodoItem } from "@/types/todo";
-import { addTodo, deleteTodo } from "@/utils/priorityUtils";
+import { addTodo, deleteTodo, editTodo, completeTodo } from "@/utils/priorityUtils";
 import AddTodo from "@/components/AddTodo";
 import TodoList from "@/components/TodoList";
 import MissingPriorities from "@/components/MissingPriorities";
@@ -16,6 +16,16 @@ const Index = () => {
   const handleDeleteTodo = (id: string) => {
     setTodos((prev) => deleteTodo(prev, id));
   };
+
+  const handleEditTodo = (id: string, title: string, priority: number) => {
+    setTodos((prev) => editTodo(prev, id, title, priority));
+  };
+
+  const handleCompleteTodo = (id: string) => {
+    setTodos((prev) => completeTodo(prev, id));
+  };
+
+  const activeTaskCount = todos.filter((t) => !t.completed).length;
 
   return (
     <div className="min-h-screen bg-background py-8 px-4 sm:py-12">
@@ -55,11 +65,11 @@ const Index = () => {
             </h2>
             {todos.length > 0 && (
               <span className="text-sm text-muted-foreground">
-                {todos.length} task{todos.length !== 1 ? "s" : ""}
+                {activeTaskCount} task{activeTaskCount !== 1 ? "s" : ""}
               </span>
             )}
           </div>
-          <TodoList todos={todos} onDelete={handleDeleteTodo} />
+          <TodoList todos={todos} onDelete={handleDeleteTodo} onEdit={handleEditTodo} onComplete={handleCompleteTodo} />
         </section>
 
         {/* Missing Priorities */}

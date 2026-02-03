@@ -6,9 +6,11 @@ import { ClipboardList } from "lucide-react";
 interface TodoListProps {
   todos: TodoItemType[];
   onDelete: (id: string) => void;
+  onEdit: (id: string, title: string, priority: number) => void;
+  onComplete: (id: string) => void;
 }
 
-const TodoList = ({ todos, onDelete }: TodoListProps) => {
+const TodoList = ({ todos, onDelete, onEdit, onComplete }: TodoListProps) => {
   const sortedTodos = sortTodosByPriority(todos);
   const maxPriority = findMaxPriority(todos);
 
@@ -33,6 +35,8 @@ const TodoList = ({ todos, onDelete }: TodoListProps) => {
             todo={todo}
             maxPriority={maxPriority}
             onDelete={onDelete}
+            onEdit={onEdit}
+            onComplete={onComplete}
           />
         </div>
       ))}

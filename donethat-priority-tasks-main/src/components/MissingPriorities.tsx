@@ -25,7 +25,7 @@ const MissingPriorities = ({ todos }: MissingPrioritiesProps) => {
       ) : missingPriorities.length === 0 ? (
         <div className="flex items-center gap-2 text-muted-foreground">
           <div className="w-2 h-2 rounded-full bg-primary/50 animate-pulse" />
-          <p className="text-sm">All priorities from 1 to max are filled!</p>
+          <p className="text-sm">No available priorities</p>
         </div>
       ) : (
         <div className="flex flex-wrap gap-2">
